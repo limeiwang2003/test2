@@ -20,10 +20,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: yarn install, build, and test
+    - name: nmp install, build, and test
       run: |
-        yarn install
-        yarn build --if-present
-        yarn test
+        npm install
+        npm build --if-present
+        npm test
       env:
         CI: true
