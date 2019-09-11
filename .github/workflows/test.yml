@@ -23,13 +23,12 @@ jobs:
     - name: yarn install, build, and test
       run: |
         yarn install
-        yarn build
-        
-   deploy:
-     needs: build
-     steps:
-     - uses: actions/aws/cli@master
-       with:
-         args: aws s3 sync dist s3://cf-templates-1kislut2dci3g-ap-southeast-2
+        yarn build        
+  deploy:
+    needs: build
+    steps:
+    - uses: actions/aws/cli@master
+      with:
+        args: aws s3 sync dist s3://cf-templates-1kislut2dci3g-ap-southeast-2
 
   
