@@ -23,3 +23,7 @@ jobs:
         yarn install
         yarn build
         
+  publish:
+    needs: [build]
+    steps:
+    - uses: actions/github-packages@master
