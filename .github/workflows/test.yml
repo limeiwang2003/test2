@@ -23,17 +23,10 @@ jobs:
         yarn install
         yarn build
         
-  publish-npm:
+  deploy:
     needs: build
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+    - uses: actions/aws/cli@master
+    - args: aws s3 sync dist s3://cf-templates-1kislut2dci3g-ap-southeast-2
 
   
