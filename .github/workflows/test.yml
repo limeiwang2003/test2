@@ -24,6 +24,6 @@ jobs:
         yarn build
         
   publish:
-    needs: [build]
+    needs: build
     steps:
     - uses: actions/github-packages@master
