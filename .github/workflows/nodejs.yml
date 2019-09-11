@@ -25,5 +25,6 @@ jobs:
         yarn install
         yarn build --if-present
         yarn test
+        echo "aaa"
       env:
         CI: true
