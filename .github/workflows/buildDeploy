@@ -1,19 +1,14 @@
-name: Node CI
-
+name: test
 on:
   push:
     branches:
-      - web-redesign
-
+    - web-redesign
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,8 +18,10 @@ jobs:
     - name: yarn install, build, and test
       run: |
         yarn install
-        yarn build --if-present
-        yarn test
-        echo "aaa"
-      env:
-        CI: true
+        yarn build        
+  deploy:
+    needs: build
+    steps:
+    - uses: actions/aws/cli@master
+      with:
+        args: aws s3 sync dist s3://cf-templates-1kislut2dci3g-ap-southeast-2
