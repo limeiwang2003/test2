@@ -2,21 +2,24 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-        nodejs: 10  
+        nodejs: 10
+        docker: 18  
     commands:
       - echo Installing ...
       - npm install
   pre_build:
     commands:
-      - echo Installing pre_build ...
+      - echo Logging in to Amazon ECR ...
+      - $(aws ecr get-login --no-include-email --region ap-southeast-2a)
   build:
     commands:
       - echo Build started on `date`
       - npm run build
+      - echo Building the Docker image...
+      - docker build -t parser-image .
+      - docker tag {tags to tag the image}
   post_build:
     commands:
       - echo Build completed on `date`
-artifacts:
-  files:
-    - '**/*'
-  base-directory: dist
+      - echo Pushing the Docker images...
+      - docker push {ECR account name}
