@@ -16,10 +16,10 @@ phases:
       - echo Build started on `date`
 #      - npm run build
       - echo Building the Docker image...
-      - docker build -t parser-image .
-      - docker tag openlawnzImage
+      - docker build -t parser_docker_image .
+      - docker tag parser_docker_image:latest 766498452075.dkr.ecr.ap-southeast-2.amazonaws.com/parser_docker_image:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push 766498452075.dkr.ecr.ap-southeast-2.amazonaws.com
+      - docker push 766498452075.dkr.ecr.ap-southeast-2.amazonaws.com/parser_docker_image:latest
