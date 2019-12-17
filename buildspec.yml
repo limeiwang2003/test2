@@ -16,7 +16,7 @@ phases:
       - echo Build started on `date`
       - npm run build
       - echo Building the Docker image...
-      - docker build -t parser_docker_image .
+#      - docker build -t parser_docker_image .
       - docker tag parser_docker_image:latest 766498452075.dkr.ecr.ap-southeast-2.amazonaws.com/parser_docker_image:latest
   post_build:
     commands:
