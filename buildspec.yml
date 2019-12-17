@@ -3,7 +3,7 @@ phases:
   install:
     runtime-versions:
         nodejs: 10
-        docker: 19  
+        docker: 18  
     commands:
       - echo Installing ...
       - npm install
