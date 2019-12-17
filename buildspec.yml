@@ -3,7 +3,7 @@ phases:
   install:
     runtime-versions:
         nodejs: 10
-        docker: 18  
+        docker: 19  
     commands:
       - echo Installing ...
       - npm install
@@ -20,6 +20,5 @@ phases:
       - docker tag parser_docker_image:latest 766498452075.dkr.ecr.ap-southeast-2.amazonaws.com/parser_docker_image:latest
   post_build:
     commands:
-      - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push 766498452075.dkr.ecr.ap-southeast-2.amazonaws.com/parser_docker_image:latest  
